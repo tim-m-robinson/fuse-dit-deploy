@@ -1,0 +1,6 @@
+---
+- hosts: fuse
+  gather_facts: no
+  roles:
+    - load_default_vars
+    - redeploy-ol-services

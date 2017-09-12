@@ -1,0 +1,7 @@
+[local]
+localhost
+
+[fuse]
+35.165.58.3 ansible_ssh_user=ec2-user
+
+

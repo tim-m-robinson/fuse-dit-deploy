@@ -1,0 +1,7 @@
+--- 
+- name: Load default vars
+  include_vars:
+    dir: '{{ playbook_dir }}/vars'
+
+- name: Debug show variables
+  debug: var=hostvars[inventory_hostname]

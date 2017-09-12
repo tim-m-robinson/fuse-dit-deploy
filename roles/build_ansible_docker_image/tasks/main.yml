@@ -1,0 +1,16 @@
+---
+- name: Copy Ansible Docker context
+  synchronize:
+    src: '{{ playbook_dir }}/lib/files/docker/ansible-image'
+    dest: /tmp/
+
+- name: Build Ansible Docker image
+  docker_image:
+    path: '/tmp/ansible-image/'
+    name: 'ansible:latest'
+    state: present
+
+- name: Cleanup Ansible Docker context
+  file:
+    path: /tmp/ansible-image
+    state: absent

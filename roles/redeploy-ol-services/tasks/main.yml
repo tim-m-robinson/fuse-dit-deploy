@@ -1,0 +1,27 @@
+--- 
+- name: Starting Deployment
+  debug:
+    msg: 'OK'
+
+- name: Read credentials from vault
+  include_vars: '{{ playbook_dir }}/vars/docker_repo.yml'
+
+- name: Log into remote Nexus repo
+  docker_login:
+    registry: '{{ nexus_repo_url }}'
+    username: '{{ docker_repo_user }}'
+    password: '{{ docker_repo_pass }}'
+    reauthorize: yes
+
+- name: Redeploy echo OL services
+  docker_container:
+    name: 'dummy-service'
+    image: '{{ nexus_repo_url }}/ol_dummy_service'
+    state: started
+    pull: yes
+    recreate: yes
+    restart_policy: always
+  register: dummy_service_details
+
+- name: Debug Dummy Service Container
+  debug: var=dummy_service_details
