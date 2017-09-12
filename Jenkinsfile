@@ -4,7 +4,7 @@ node {
         git url:'https://github.com/tim-m-robinson/fuse-dit-deploy'
     }
     stage('Deploy') {
-        sh 'cd ansible;./redeploy.sh'
+        sh './redeploy.sh'
     }
     stage('Validate') {
         //TODO
