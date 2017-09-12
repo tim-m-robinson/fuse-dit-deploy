@@ -25,7 +25,7 @@
 - name: Redeploy nginx config
   template:
     src: '{{ playbook_dir }}/lib/templates/nginx/nginx.conf.j2'
-    dest: nginx.conf  
+    dest: ./nginx.conf  
 
 - name: Redeploy nginx proxy
   docker_container:
